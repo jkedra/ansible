@@ -1,10 +1,37 @@
 version: "3.5"
 
 services:
+    # docker container run --rm -v `pwd`:`pwd` -w `pwd` -ti -h ansible jkedra/ansible
+    control:
+        stdin_open: true
+        tty: true
+        build:
+            context: .
+            dockerfile: Dockerfile-control
+        volumes:
+            - .:/ansible
 
-  ansible-control:
-
-    image: chrisshort/docker-ubuntu1604-ansible
+    lb01:
+        image: alpine:latest
+        stdin_open: true
+        tty: true
+ 
+    app01:
+        image: alpine:latest
+        stdin_open: true
+        tty: true
+ 
+    app02:
+        image: alpine:latest
+        stdin_open: true
+        tty: true
+ 
+    db01:
+        image: alpine:latest
+        stdin_open: true
+        tty: true
+        
+    
 
 #    ports:
 #      - "8080:80"

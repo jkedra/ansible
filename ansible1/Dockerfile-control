@@ -1,0 +1,12 @@
+FROM ubuntu:latest
+
+RUN apt update && \
+    apt -y install ansible vim less telnet iputils-ping man openssh-server && \
+    groupadd ansible && \
+    useradd -d /home/ansible -g ansible -G root,sudo -ms /bin/bash \
+        -p ubuntu ubuntu
+
+USER ansible
+WORKDIR /home/ansible
+
+CMD ["/bin/bash"]
